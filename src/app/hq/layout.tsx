@@ -34,7 +34,6 @@ export default async function HQLayout({ children }: { children: React.ReactNode
 
   const unread = MOCK_NOTIFICATIONS.filter((n) => n.userId === user.id && !n.read).length;
 
-  // Group menu items
   const groups = MENU.reduce<Record<string, typeof MENU>>((acc, item) => {
     (acc[item.group] = acc[item.group] || []).push(item);
     return acc;
@@ -42,8 +41,34 @@ export default async function HQLayout({ children }: { children: React.ReactNode
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+      {/* Mobile menu — horizontal scrollable chips */}
+      <div className="lg:hidden mb-4 -mx-4 px-4 overflow-x-auto">
+        <div className="flex gap-1.5 pb-2 min-w-max">
+          {MENU.map((item) => {
+            const IconComp = Icon[item.icon];
+            const isBell = item.href === "/hq/notifications";
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-slate-200 bg-white text-xs text-slate-700 hover:bg-slate-50 whitespace-nowrap"
+              >
+                <IconComp className="w-3.5 h-3.5 text-slate-400" />
+                <span>{item.label}</span>
+                {isBell && unread > 0 && (
+                  <span className="text-[10px] bg-rose-500 text-white rounded-full px-1.5 leading-none">
+                    {unread}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
       <div className="flex flex-col lg:flex-row gap-6">
-        <aside className="lg:w-60 shrink-0">
+        {/* Desktop sidebar */}
+        <aside className="hidden lg:block lg:w-60 shrink-0">
           <nav className="space-y-4">
             {Object.entries(groups).map(([group, items]) => (
               <div key={group}>

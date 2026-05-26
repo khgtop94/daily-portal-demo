@@ -16,8 +16,27 @@ export default async function WorkerLayout({ children }: { children: React.React
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6">
+      {/* Mobile menu */}
+      <div className="lg:hidden mb-4 -mx-4 px-4 overflow-x-auto">
+        <div className="flex gap-1.5 pb-2 min-w-max">
+          {MENU.map((item) => {
+            const IconComp = Icon[item.icon];
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-slate-200 bg-white text-xs text-slate-700 hover:bg-slate-50 whitespace-nowrap"
+              >
+                <IconComp className="w-3.5 h-3.5 text-slate-400" />
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
       <div className="flex flex-col lg:flex-row gap-6">
-        <aside className="lg:w-52 shrink-0">
+        <aside className="hidden lg:block lg:w-52 shrink-0">
           <nav className="space-y-0.5">
             {MENU.map((item) => {
               const IconComp = Icon[item.icon];
