@@ -18,7 +18,7 @@ export default function HomePage() {
           실제 사내에서 1인이 1개월 만에 도입·운영 중인 통합 업무 포털을
           익명화·일반화하여 라이브로 구현한 데모입니다.
           <br />
-          3-tier 세션, 8단계 권한 모델, 결재 흐름 상태 머신을 직접 클릭해 볼 수 있습니다.
+          3-tier 세션, 8단계 권한, 결재 상태 머신, EXIF 검증, 감사 로그 — 모두 클릭해 볼 수 있습니다.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link href="/login" className="btn-primary text-base px-5 py-2.5">
@@ -36,26 +36,63 @@ export default function HomePage() {
       </section>
 
       {/* What you'll see */}
-      <section className="mb-16">
-        <h2 className="text-xl font-semibold text-slate-900 mb-6">데모에서 확인할 수 있는 것</h2>
-        <div className="grid sm:grid-cols-3 gap-4">
+      <section className="mb-12">
+        <h2 className="text-xl font-semibold text-slate-900 mb-1">데모에서 확인할 수 있는 것</h2>
+        <p className="text-sm text-slate-500 mb-6">로그인 후 클릭해서 직접 만져보세요.</p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           <Feature
             href="/architecture"
             icon="🏛️"
-            title="아키텍처 & 설계 의도"
-            body="3-tier 세션 분리, 결재 5단계 상태 머신, 2중 권한 방어 구조를 다이어그램으로."
+            title="아키텍처 & 설계 의도 (8가지)"
+            body="RLS 2중 방어 / 3-tier 세션 / Capability / 상태 머신 / 데이터 모델 / EXIF / 마이그레이션 / 감사 로그"
           />
           <Feature
             href="/hq/permissions"
             icon="🔐"
             title="8단계 권한 매트릭스"
-            body="역할을 클릭하면 capability 집합이 하이라이트. 수직(관리) + 수평(직무) 하이브리드 모델."
+            body="역할 클릭 시 capability 하이라이트. 수직(관리) + 수평(직무) 하이브리드 모델."
           />
           <Feature
             href="/hq/receipts"
             icon="📑"
-            title="결재 흐름 인터랙티브"
-            body="실제 5건의 영수증 결재가 어느 단계에 있는지 클릭해 history와 감사 로그를 확인."
+            title="결재 흐름 (필터·검색·승인)"
+            body="7건의 가상 영수증. 필터/검색/실제 승인·반려 액션까지 작동."
+          />
+          <Feature
+            href="/hq/materials"
+            icon="📦"
+            title="자재 요청 결재"
+            body="결재 액션 실제 작동. 권한별 액션 버튼 가시성 차이 비교."
+          />
+          <Feature
+            href="/hq/meetings"
+            icon="📋"
+            title="회의록 + 안건 결정 추적"
+            body="안건마다 결정 분리, 마감초과 자동 플래그."
+          />
+          <Feature
+            href="/hq/attendance"
+            icon="⏰"
+            title="GPS 출퇴근 조회"
+            body="좌표 검증, 지각·조퇴 자동 플래그."
+          />
+          <Feature
+            href="/hq/users"
+            icon="👥"
+            title="사용자 관리 (3-tier 분리)"
+            body="본사/도급/발주처 필터, 역할별 배정 사이트 한 눈에."
+          />
+          <Feature
+            href="/hq/sites"
+            icon="🏢"
+            title="사이트 관리"
+            body="직무·근무자 수·결재 통계·이슈 카운트."
+          />
+          <Feature
+            href="/hq/audit-log"
+            icon="🔍"
+            title="감사 로그"
+            body="모든 권한·결재 변경 trigger 자동 기록."
           />
         </div>
       </section>
@@ -105,11 +142,11 @@ function Feature({
   return (
     <Link
       href={href}
-      className="card p-5 hover:border-brand-300 hover:shadow-md transition block"
+      className="card p-4 hover:border-brand-300 hover:shadow-md transition block"
     >
-      <div className="text-2xl mb-2">{icon}</div>
-      <h3 className="font-semibold text-slate-900 mb-1.5">{title}</h3>
-      <p className="text-sm text-slate-600 leading-relaxed">{body}</p>
+      <div className="text-2xl mb-1.5">{icon}</div>
+      <h3 className="font-semibold text-slate-900 mb-1 text-sm">{title}</h3>
+      <p className="text-xs text-slate-600 leading-relaxed">{body}</p>
     </Link>
   );
 }

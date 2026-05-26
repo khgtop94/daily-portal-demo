@@ -17,6 +17,9 @@ const CAP_LABELS: Record<Capability, string> = {
   CAN_REVIEW_SAFETY: "안전 항목 검토",
   CAN_REGISTER_WORKER: "도급 등록 신청",
   CAN_MANAGE_CLIENT_PORTAL: "발주처 포털 관리",
+  CAN_MANAGE_SITE:          "사이트 관리",
+  CAN_APPROVE_MATERIAL:     "자재 요청 결재",
+  CAN_CLOSE_MEETING:        "회의 종결",
 };
 
 const ALL_CAPS = Object.keys(CAPABILITIES) as Capability[];

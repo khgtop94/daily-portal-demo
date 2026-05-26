@@ -5,25 +5,18 @@ import type { Capability, Role } from "./types";
 // Adding a new feature = adding/extending a Set. No hierarchical inference.
 
 export const CAPABILITIES: Record<Capability, ReadonlySet<Role>> = {
-  CAN_APPROVE_HQ: new Set<Role>(["admin", "support"]),
-  CAN_APPROVE_OPS: new Set<Role>(["admin", "support", "operations"]),
-  CAN_APPROVE_CLIENT: new Set<Role>([]), // client-side only — not in HQ matrix
-  CAN_CREATE_RECEIPT: new Set<Role>([
-    "admin",
-    "support",
-    "operations",
-    "manager",
-  ]),
-  CAN_MANAGE_ACCOUNT: new Set<Role>(["admin", "support"]),
-  CAN_VIEW_AUDIT_LOG: new Set<Role>(["admin", "support", "executive"]),
-  CAN_REVIEW_SAFETY: new Set<Role>([
-    "admin",
-    "support",
-    "operations",
-    "safety",
-  ]),
-  CAN_REGISTER_WORKER: new Set<Role>(["admin", "support", "operations"]),
+  CAN_APPROVE_HQ:         new Set<Role>(["admin", "support"]),
+  CAN_APPROVE_OPS:        new Set<Role>(["admin", "support", "operations"]),
+  CAN_APPROVE_CLIENT:     new Set<Role>([]), // client-side only — not in HQ matrix
+  CAN_CREATE_RECEIPT:     new Set<Role>(["admin", "support", "operations", "manager"]),
+  CAN_MANAGE_ACCOUNT:     new Set<Role>(["admin", "support"]),
+  CAN_VIEW_AUDIT_LOG:     new Set<Role>(["admin", "support", "executive"]),
+  CAN_REVIEW_SAFETY:      new Set<Role>(["admin", "support", "operations", "safety"]),
+  CAN_REGISTER_WORKER:    new Set<Role>(["admin", "support", "operations"]),
   CAN_MANAGE_CLIENT_PORTAL: new Set<Role>(["admin", "support"]),
+  CAN_MANAGE_SITE:        new Set<Role>(["admin", "support", "operations"]),
+  CAN_APPROVE_MATERIAL:   new Set<Role>(["admin", "support", "operations"]),
+  CAN_CLOSE_MEETING:      new Set<Role>(["admin", "support", "operations", "executive", "director"]),
 };
 
 export function can(role: Role | undefined, capability: Capability): boolean {

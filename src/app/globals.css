@@ -18,7 +18,7 @@ html, body {
     @apply bg-white border border-slate-200 rounded-xl shadow-sm;
   }
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition;
+    @apply inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition;
   }
   .btn-primary {
     @apply btn bg-brand-600 text-white hover:bg-brand-700;
@@ -29,7 +29,26 @@ html, body {
   .btn-danger {
     @apply btn bg-rose-50 border border-rose-200 text-rose-700 hover:bg-rose-100;
   }
+  .btn-emerald {
+    @apply btn bg-emerald-600 text-white hover:bg-emerald-700;
+  }
   .pill {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border;
   }
+  .input {
+    @apply w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-200 focus:border-brand-500;
+  }
+  .label {
+    @apply block text-xs font-medium text-slate-600 mb-1;
+  }
+  .table-cell {
+    @apply px-3 py-2 text-sm;
+  }
+  .table-header {
+    @apply px-3 py-2 text-xs font-medium text-slate-500 uppercase tracking-wider text-left;
+  }
 }
+
+/* Subtle animation for new content */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.animate-in { animation: fadeIn 0.2s ease-out; }
